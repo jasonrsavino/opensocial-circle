@@ -9,7 +9,7 @@
       "url": "https://packages.drupal.org/8"
     }
   ],
-    "require": {
+  "require": {
     "composer/installers": "^1.0.20",
     "cweagans/composer-patches": "^1.0",
     "drupal-composer/drupal-scaffold": "^2.0.1",
@@ -20,26 +20,28 @@
     "drupal/simple_block": "^1.0@beta",
     "drush/drush": "~8",
     "rvtraveller/qs-composer-installer": "^1.1",
-    "webflo/drupal-core-strict": "^8"
+    "webflo/drupal-core-strict": "^8",
+    "drupal/address": "~1.0",
+    "goalgorilla/open_social": "~1.0"
   },
   "require-dev": {
-    "mikey179/vfsstream": "^1.2",
+    "mikey179/vfsstream": "~1.2",
     "behat/behat": "3.*",
-    "behat/mink": "^1.7",
-    "behat/mink-extension": "^2.2",
-    "behat/mink-goutte-driver": "^1.2",
-    "jcalderonzumba/gastonjs": "^1.0.2",
-    "jcalderonzumba/mink-phantomjs-driver": "^0.3.1",
-    "drupal/drupal-extension": "^3.1",
-    "drush-ops/behat-drush-endpoint": "^0.0.4",
     "pantheon-systems/quicksilver-pushback": "~1",
     "phpunit/phpunit": "^4.8",
-    "symfony/css-selector": "^2.8"
+    "symfony/css-selector": "^2.8",
+    "behat/mink": "~1.7",
+    "behat/mink-extension": "*",
+    "behat/mink-goutte-driver": "~1.2",
+    "jcalderonzumba/gastonjs": "~1.0.2",
+    "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+    "drupal/drupal-extension": "*",
+    "drush-ops/behat-drush-endpoint": "*"
   },
   "conflict": {
       "drupal/drupal": "*"
   },
-  "minimum-stability": "alpha",
+  "minimum-stability": "dev",
   "prefer-stable": true,
   "autoload": {
     "classmap": [
@@ -72,13 +74,14 @@
     "installer-paths": {
       "web/core": ["type:drupal-core"],
       "web/modules/contrib/{$name}": ["type:drupal-module"],
+      "web/profiles/contrib/profile": ["goalgorilla/open_social"],
       "web/profiles/contrib/{$name}": ["type:drupal-profile"],
       "web/themes/contrib/{$name}": ["type:drupal-theme"],
       "drush/contrib/{$name}": ["type:drupal-drush"]
     },
     "build-env": {
       "install-cms": [
-        "drush site-install standard --account-mail={account-mail} --account-name={account-name} --account-pass={account-pass} --site-mail={site-mail} --site-name={site-name} --yes",
+        "drush site-install social --account-mail={account-mail} --account-name={account-name} --account-pass={account-pass} --site-mail={site-mail} --site-name={site-name} --yes",
         "drush pm-enable config_direct_save simple_block --yes",
         "drush pm-uninstall block_content --yes"
       ],
